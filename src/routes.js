@@ -9,7 +9,8 @@ const routes = new Router();
 
 routes.post('/user/novo', UserController.addUser);
 routes.post('/login', LoginController.login);
-routes.post('/product', AuthMiddleware, ProductController.store);
-routes.get('/product', AuthMiddleware, ProductController.getProducts);
+routes.post('/product', ProductController.store);
+routes.delete('/product', ProductController.deleteProduct);
+routes.get('/product', ProductController.getProducts);
 
 module.exports = routes;

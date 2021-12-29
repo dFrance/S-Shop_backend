@@ -14,7 +14,7 @@ class ProductController{
     }
 
 
-    async store(req, res){
+    store(req, res){
         const {name, description, price} = req.body; 
 
         const productData = {
@@ -24,7 +24,7 @@ class ProductController{
             quantity: 1
         }
 
-        await Product.create(productData, (err) => {
+        Product.create(productData, (err) => {
             if(err){
                 return res.status(400).json({
                     error: true,
@@ -36,6 +36,16 @@ class ProductController{
                 message: "Um novo produto cadastrado!"
             })
 
+        })
+    }
+
+    async deleteProduct(req, res){
+        const {_id} = req.body;
+        await Product.deleteOne({_id})
+
+        return res.status(200).json({
+            error: false,
+            message: "Produto excluido!"
         })
     }
 }
